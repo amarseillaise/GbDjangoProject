@@ -17,6 +17,14 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+import blog.views
+import lesson1_2app.views
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('coin/<int:n>', lesson1_2app.views.coin, name='coin'),
+    path('cube/<int:n>', lesson1_2app.views.cube, name='cube'),
+    path('number/<int:n>', lesson1_2app.views.number, name='number'),
+    path('statistic/', lesson1_2app.views.statistic, name='statistic'),
+    path('authors_list/<int:author_id>', blog.views.authors_list, name='authors-list'),
 ]

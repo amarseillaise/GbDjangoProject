@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Статьи автора</h1>
+<ul>
+    {% for post in posts %}
+        {% if post.ispublic %}
+       <li><a href="{% url 'authors-list' post.id %} }">{{ post.title }}</a></li>
+        {% else %}
+        <li>{{ post.title }}</li>
+        {% endif %}
+    {% endfor %}
+</ul>
+
+</body>
+</html>
