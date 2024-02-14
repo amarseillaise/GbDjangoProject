@@ -1,24 +1,26 @@
 from django.core.management.base import BaseCommand
-from market.models import Customers
+from market.models import Goods
+from django.utils import lorem_ipsum
+from random import uniform, randint
 import random
 from datetime import datetime, timedelta, date
 
 
 class Command(BaseCommand):
-    help = 'Create n customers'
+    help = 'Create n goods'
 
     def add_arguments(self, parser):
-        parser.add_argument('-n', type=int, help='count of customers', default=10, required=False, )
+        parser.add_argument('-n', type=int, help='count of goods', default=10, required=False, )
 
     def handle(self, *args, **kwargs):
         n = kwargs['n']
         for i in range(int(n)):
-            customer = Customers(name=f'customer_{i}',
-                                 email=f'example_{i}_@example.com',
-                                 address=f'Grow street {i}',
-                                 phone=f'+{79008223115 + i}',
-                                 sign_up_date=self.get_random_date()
-                                 )
+            customer = Goods(title=f'good_{i}',
+                             description=lorem_ipsum.words(15, common=False),
+                             price=uniform(1, 100_000),
+                             total_quantity=randint(0, 100),
+                             add_date=self.get_random_date()
+                             )
             customer.save()
 
     @staticmethod

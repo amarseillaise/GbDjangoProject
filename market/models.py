@@ -7,7 +7,7 @@ class Customers(models.Model):
     email = models.EmailField()
     address = models.CharField(max_length=120)
     phone = models.CharField(max_length=15)
-    sign_up_date = models.DateField(auto_now_add=True)
+    sign_up_date = models.DateField()
 
 
 class Goods(models.Model):
@@ -15,11 +15,11 @@ class Goods(models.Model):
     description = models.TextField(max_length=250)
     price = models.DecimalField(decimal_places=2, max_digits=10)
     total_quantity = models.DecimalField(decimal_places=2, max_digits=15)
-    add_date = models.DateField(auto_now_add=True)
+    add_date = models.DateField()
 
 
 class Orders(models.Model):
     user = models.ForeignKey(Customers, on_delete=models.CASCADE)
     goods = models.ManyToManyField(Goods)
     total_price = models.DecimalField(decimal_places=2, max_digits=12)
-    add_date = models.DateField(auto_now_add=True)
+    add_date = models.DateField()
