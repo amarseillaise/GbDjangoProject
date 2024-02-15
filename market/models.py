@@ -9,6 +9,9 @@ class Customers(models.Model):
     phone = models.CharField(max_length=15)
     sign_up_date = models.DateField()
 
+    def __str__(self):
+        return self.name
+
 
 class Goods(models.Model):
     title = models.CharField(max_length=40)
