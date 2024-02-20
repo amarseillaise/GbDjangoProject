@@ -15,65 +15,69 @@
         <h1 class="main-welcome">Все товары</h1>
     </div>
     <section class="main">
-    
+
         <div class="week-statistic">
             <table>
-              <thead>
+                <thead>
                 <tr>
-                  <th scope="col">Название</th>
-                  <th scope="col">Цена</th>
-                  <th scope="col">Остаток</th>
-                  <th scope="col">Фото</th>
+                    <th scope="col">Название</th>
+                    <th scope="col">Цена</th>
+                    <th scope="col">Остаток</th>
+                    <th scope="col">Фото</th>
                 </tr>
-              </thead>
+                </thead>
                 <tbody>
-                      {% for good in all_goods %}
-                        <tr>
-                          <td>{{ good.title }}</td>
-                          <td>{{ good.price }}</td>
-                          <td>{{ good.total_quantity }}</td>
-                        
-                            {% if good.photo %}
-                                <td><img src="{{ good.photo.url }}"></td>
-                            {% else %}
-                                <td>
-                                    <form id=photo_{{ good.pk }} method="POST"> {% csrf_token %}
-                                        {{ good.form_photo.photo }}
-                                    </form>
-                                </td>
-                            {% endif %}
-                        
-                        </tr>
-                    {% endfor %}
+                {% for good in all_goods %}
+                    <tr>
+                        <td>{{ good.title }}</td>
+                        <td>{{ good.price }}</td>
+                        <td>{{ good.total_quantity }}</td>
+
+                        {% if good.photo %}
+                            <td><img src="{{ good.photo.url }}" width="50" height="50"></td>
+                        {% else %}
+                            <td>
+                                <form id=photo_{{ good.pk }} method="POST"> {% csrf_token %}
+                                    {{ good.form_photo.photo }}
+                                </form>
+                            </td>
+                        {% endif %}
+
+                    </tr>
+                {% endfor %}
                 </tbody>
             </table>
         </div>
-    
+
     </section>
-        <script>
-              function upload(clicked_id)
-              {
-                  const form = document.getElementById(clicked_id).parentElement
-                  form.submit()
-                  {#const image = document.getElementById(clicked_id).files[0];#}
-                  {##}
-                  {#const formData = new FormData();#}
-                  {#formData.append("photo", image);#}
-                  {#formData.append("pk", clicked_id);#}
-                  {##}
-                  {#const xhr = new XMLHttpRequest();#}
-                  {#xhr.open("POST", document.URL);#}
-                  {#xhr.setRequestHeader('X-CSRFToken', getCookie('csrftoken'));#}
-                  {#xhr.send(formData);#}
-                  {#xhr.open("GET", document.URL)#}
-                  {#xhr.send()#}
-              }
-              
-              function getCookie(name) {
-                  let matches = document.cookie.match(new RegExp(
-                    "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
-                  ));
-                  return matches ? decodeURIComponent(matches[1]) : undefined;
-              }
-        </script>
+    <script>
+        function upload(clicked_id) {
+            const image = document.getElementById(clicked_id).files[0];
+            const formData = new FormData();
+            formData.append("photo", image);
+            formData.append("pk", clicked_id);
+        
+            fetch(document.URL, {
+                method: 'POST', 
+                headers: {
+                    'X-CSRFToken': getCookie('csrftoken')
+                },
+                body: formData
+            })
+            .then(response => response.text())
+            .then(html => {
+                var win = window.open("", "_blank");
+                win.document.write(html);
+                win.document.close();
+            })
+            .catch(error => console.error('Ошибка:', error));
+                }
+
+        function getCookie(name) {
+            let matches = document.cookie.match(new RegExp(
+                "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+            ));
+            return matches ? decodeURIComponent(matches[1]) : undefined;
+        }
+    </script>
 {% endblock %}

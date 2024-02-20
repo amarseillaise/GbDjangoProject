@@ -1,6 +1,6 @@
 from datetime import date, timedelta
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Customers, Orders, Goods
 from .forms import CustomerChoiceForm, PhotoChoiceForm
 
@@ -49,8 +49,8 @@ def all_goods(request):
         context['all_goods'] = all_goods
         return render(request, 'all_goods.html', context)
     else:
-        # image = request.FILES['photo']
-        # to_edit_good = Goods.objects.get(id=request.POST.get('pk').split('_')[2])
-        # to_edit_good.photo.save(image.name, image)
-        # to_edit_good.save()
-        return HttpResponse(1)
+        image = request.FILES['photo']
+        to_edit_good = Goods.objects.get(id=request.POST.get('pk').split('_')[2])
+        to_edit_good.photo.save(image.name, image)
+        to_edit_good.save()
+        return redirect('all_goods')
