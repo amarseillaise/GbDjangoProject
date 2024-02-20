@@ -1,7 +1,8 @@
 from datetime import date, timedelta
+from django.http import HttpResponse
 from django.shortcuts import render
 from .models import Customers, Orders, Goods
-from .forms import CustomerChoiceForm
+from .forms import CustomerChoiceForm, PhotoChoiceForm
 
 # Create your views here.
 
@@ -31,3 +32,25 @@ def customer_statistic(request):
         print(context['year_orders'])
         return render(request, 'statistic.html', context)
 
+
+def all_goods(request):
+    if request.method == 'GET':
+        context = {}
+        all_goods = []
+        for good in Goods.objects.all():
+            short_good = {}
+            short_good['pk'] = good.pk
+            short_good['title'] = good.title
+            short_good['price'] = good.price
+            short_good['total_quantity'] = good.total_quantity
+            short_good['photo'] = good.photo
+            short_good['form_photo'] = PhotoChoiceForm(pkid='upload_photo_' + str(good.pk))
+            all_goods.append(short_good)
+        context['all_goods'] = all_goods
+        return render(request, 'all_goods.html', context)
+    else:
+        # image = request.FILES['photo']
+        # to_edit_good = Goods.objects.get(id=request.POST.get('pk').split('_')[2])
+        # to_edit_good.photo.save(image.name, image)
+        # to_edit_good.save()
+        return HttpResponse(1)
