@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    Статистика пользователя
+{% endblock %}
+
+{% block style_link %}
+    <link rel="stylesheet" href="{% static "css/table.css" %}">
+        <link rel="stylesheet" href="{% static "css/style.css" %}">
+{% endblock %}
+
+{% block content %}
+    <div class="main-title">
+        <h1 class="main-welcome">Cтатистика по клиенту {{ customer.name }}</h1>
+    </div>
+    <section class="main">
+    
+        <div class="week-statistic">
+            <table>
+              <caption>
+                Статистика за неделю
+              </caption>
+              <thead>
+                <tr>
+                  <th scope="col">№</th>
+                  <th scope="col">Товар</th>
+                  <th scope="col">Дата покупки</th>
+                </tr>
+              </thead>
+                <tbody>
+                      {% for good in week_orders %}
+                        <tr>
+                          <td>{{ forloop.counter }}</td>
+                          <td>{{ good.title }}</td>
+                          <td>{{ good.add_date | date:'d.m.Y'}}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    
+        <div class="week-statistic">
+            <table>
+              <caption>
+                Статистика за месяц
+              </caption>
+              <thead>
+                <tr>
+                  <th scope="col">№</th>
+                  <th scope="col">Товар</th>
+                  <th scope="col">Дата покупки</th>
+                </tr>
+              </thead>
+                <tbody>
+                      {% for good in month_orders %}
+                        <tr>
+                          <td>{{ forloop.counter }}</td>
+                          <td>{{ good.title }}</td>
+                          <td>{{ good.add_date | date:'d.m.Y'}}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    
+            <div class="week-statistic">
+            <table>
+              <caption>
+                Статистика за год
+              </caption>
+              <thead>
+                <tr>
+                  <th scope="col">№</th>
+                  <th scope="col">Товар</th>
+                  <th scope="col">Дата покупки</th>
+                </tr>
+              </thead>
+                <tbody>
+                      {% for good in year_orders %}
+                        <tr>
+                          <td>{{ forloop.counter }}</td>
+                          <td>{{ good.title }}</td>
+                          <td>{{ good.add_date | date:'d.m.Y'}}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    
+    </section>
+{% endblock %}
+

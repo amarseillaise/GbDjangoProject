@@ -1,0 +1,176 @@
+* {
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+@font-face {
+    font-family: 'Gilroy-regular';
+    src: url("../fonts/gilroy-regular.ttf");
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: 'Gilroy-medium';
+    src: url("../fonts/gilroy-medium.ttf");
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: 'Gilroy-semibold';
+    src: url("../fonts/gilroy-semibold.ttf");
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: 'Gilroy-Bold';
+    src: url("../fonts/gilroy-bold.ttf");
+    font-weight: 700;
+}
+
+.cards{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 100px 100px;
+    gap: 15px;
+}
+
+.card{
+    width: 381px;
+    height: 291px;
+    border: 1px solid #000;
+}
+
+.card-logo{
+    margin-left: 30px;
+    margin-top: 30px;
+    margin-bottom: 25px;
+}
+
+.card-sign{
+    color: #000;
+    font-family: Gilroy-Bold;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-left: 30px;
+    margin-bottom: 17px;
+}
+
+.card-description{
+    width: 310px;
+    height: 42px;
+    flex-shrink: 0;
+    color: #666;
+    font-family: Gilroy-Regular;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 22.5px */
+    margin-left: 30px;
+    margin-bottom: 25px;
+}
+
+.card-read-more{
+    color: #000;
+    font-family: Gilroy-Bold;
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 16.5px */
+    margin-left: 30px;
+}
+
+.choose{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.choose-sign{
+    color: #000;
+    font-family: Gilroy-Bold;
+    font-size: 45px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-align: center;
+    padding-bottom: 19px;
+}
+
+.choose-description{
+    color: #666;
+    text-align: center;
+    width: 682px;
+    font-family: Gilroy-Regular;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 24px */
+}
+
+.features-cards{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    height: 549px;
+    width: 1170px;
+    margin: 54px auto 100px;
+    gap: 30px;
+}
+
+.feature-card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #FFF;
+    box-shadow: 15px 25px 60px -5px rgba(0, 0, 0, 0.10);
+}
+
+.feature-card-text-header{
+    color: #000;
+    font-family: Gilroy-Bold;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-align: center;
+    margin-top: 21px;
+    margin-bottom: 22px;
+}
+
+.feature-card-text-description{
+    color: #AAA;
+    text-align: center;
+    font-family: Gilroy-Regular;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 22.5px */
+    text-align: center;
+    margin-bottom: 29px;
+    width: 310px;
+}
+
+.feature-card-text-button{
+    width: 140px;
+    height: 50px;
+    flex-shrink: 0;
+    border-radius: 50px;
+    background: #F25822;
+    box-shadow: 4px 4px 8px 0 rgba(242, 88, 34, 0.20);
+    border: none;
+}
+
+.feature-card-text-button-text{
+    color: #FFF;
+    text-align: center;
+    font-family: Gilroy-Bold;
+    font-size: 13px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 150%; /* 19.5px */
+}
