@@ -1,4 +1,3 @@
-from datetime import datetime
 from django.db import models
 
 
@@ -21,6 +20,9 @@ class Goods(models.Model):
     total_quantity = models.DecimalField(decimal_places=2, max_digits=15)
     add_date = models.DateField()
     photo = models.ImageField(upload_to='media/')
+
+    def __str__(self):
+        return self.title
 
 
 class Orders(models.Model):
