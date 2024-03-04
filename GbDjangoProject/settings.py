@@ -20,11 +20,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-_a7g7-s3vvb)kajy$2kg0v^uan47pi811a-$5_^8mpr&a@wy0r'
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['tagrolka.ru', '.tagrolka.ru', 'localhost']
 
 # Application definition
 
@@ -75,6 +77,14 @@ WSGI_APPLICATION = 'GbDjangoProject.wsgi.application'
 
 DATABASES = {
     'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'market',
+        'USER': 'marketadmin',
+        'PASSWORD': 'zxon',
+        'HOST': 'localhost',
+        'PORT': '',
+    },
+    'default_old': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
@@ -113,6 +123,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 MEDIA_URL = 'media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 STATICFILES_DIRS = [
