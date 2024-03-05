@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block style_link %}
+        <link rel="stylesheet" href="{% static "css/style.css" %}">
+{% endblock %}
+
+{% block content %}
+    <section class="main">
+        <div class="main-left">
+            <h1 class="main-welcome">Выберите клиента для отображения статистики</h1>
+            <div class="main-buttons">
+                <form class="menu-item" action="{% url 'customer_statistic' %}" method = "POST" > {% csrf_token %}
+                    {{ customer_selector }} 
+                    <input class="main-start-button" type = "submit" value = "Показать"> 
+                </form>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
